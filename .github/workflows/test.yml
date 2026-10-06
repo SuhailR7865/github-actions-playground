@@ -1,22 +1,19 @@
-name: My First Workflow
+name: Workflow Statistics
 
 on:
   push:
   pull_request:
 
 jobs:
-  test:
+  count-workflows:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Say hello
-        run: echo "Hello from GitHub Actions!"
+      - name: Count workflow files
+        run: |
+          count=$(find .github/workflows -type f -name "*.yml" -o -name "*.yaml" | wc -l)
 
-      - name: Force failure
-        run: exit 1
-
-      - name: This won't run
-        run: echo "You won't see this"
+          echo "Number of workflow files: $count"
