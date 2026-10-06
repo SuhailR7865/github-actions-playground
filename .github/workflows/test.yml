@@ -15,5 +15,8 @@ jobs:
       - name: Say hello
         run: echo "Hello from GitHub Actions!"
 
-      - name: Show Node version
-        run: node --version
+      - name: Force failure
+        run: exit 1
+
+      - name: This won't run
+        run: echo "You won't see this"
